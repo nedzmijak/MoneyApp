@@ -1,4 +1,6 @@
 abstract class AppRoutes {
   AppRoutes._();
   static const String transactions = '/transactions';
+  static const String pay = '/pay';
+  static const String payWho = '/pay_who';
 }
