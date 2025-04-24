@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:moneyapp/src/routing/app_routes.dart';
 
 class TransactionsScreen extends StatelessWidget {
   @override
@@ -46,11 +48,15 @@ class TransactionsScreen extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SvgPicture.asset(
-                                      'assets/icons/phone_icon.svg',
-                                      width: 40,
-                                      height: 40,
-                                    ),
+                                    IconButton(
+                                        onPressed: () {
+                                          context.go(AppRoutes.pay);
+                                        },
+                                        icon: SvgPicture.asset(
+                                          'assets/icons/phone_icon.svg',
+                                          width: 40,
+                                          height: 40,
+                                        )),
                                     SizedBox(height: 8),
                                     Text("Pay",
                                         style: GoogleFonts.montserrat(
@@ -99,28 +105,58 @@ class TransactionsScreen extends StatelessWidget {
                             ),
                           )),
                     )),
-                SizedBox(height: 70), // 30px space below purple container
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20), // 20px horizontal padding
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text("First text",
-                            style: GoogleFonts.montserrat(
-                                color: Colors.black,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500)),
+                SizedBox(height: 70),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Text(
+                        "Recent activity",
+                        style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: Color.fromRGBO(58, 59, 60, 1)),
                       ),
-                      SizedBox(height: 8),
-                      Text("Second text",
+                    ),
+                    SizedBox(height: 7),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Text("TODAY",
                           style: GoogleFonts.montserrat(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500)),
-                    ],
-                  ),
+                            color: Color.fromRGBO(176, 179, 184, 1),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Container(
+                      color: Colors.white,
+                      height: 150,
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Text("YESTERDAY",
+                          style: GoogleFonts.montserrat(
+                            color: Color.fromRGBO(176, 179, 184, 1),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          )),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Container(
+                      color: Colors.white,
+                      height: 150,
+                    ),
+                  ],
                 ),
               ],
             ),
