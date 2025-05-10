@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:moneyapp/src/routing/app_routes.dart';
 
 class TransactionsScreen extends StatelessWidget {
+  final String textController;
+  const TransactionsScreen({super.key, required this.textController});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,6 +138,21 @@ class TransactionsScreen extends StatelessWidget {
                     Container(
                       color: Colors.white,
                       height: 150,
+                      child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 14),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SvgPicture.asset('assets/icons/payment_icon.svg'),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(textController),
+                              Spacer(),
+                              Text("amount")
+                            ],
+                          )),
                     ),
                     SizedBox(
                       height: 8,

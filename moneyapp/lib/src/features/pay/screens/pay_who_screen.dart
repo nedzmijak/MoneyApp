@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:moneyapp/src/routing/app_routes.dart';
 
 class PayWhoScreen extends StatelessWidget {
+  final textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +25,7 @@ class PayWhoScreen extends StatelessWidget {
             padding: const EdgeInsets.only(right: 11.0),
             child: IconButton(
               onPressed: () {
-                context.go(AppRoutes.transactions);
+                context.go(AppRoutes.transactions, extra: textController.text);
               },
               icon: SvgPicture.asset('assets/icons/exit.svg'),
             ),
@@ -52,6 +53,7 @@ class PayWhoScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 50),
                   child: TextField(
+                    controller: textController,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
                       contentPadding: EdgeInsets.all(10),
@@ -80,7 +82,8 @@ class PayWhoScreen extends StatelessWidget {
                       height: 60,
                       child: ElevatedButton(
                         onPressed: () {
-                          context.go(AppRoutes.transactions);
+                          context.go(AppRoutes.transactions,
+                              extra: textController.text);
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromRGBO(247, 247, 247, 0.5),

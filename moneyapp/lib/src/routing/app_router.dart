@@ -11,7 +11,10 @@ final GoRouter appRouter = GoRouter(
   routes: [
     GoRoute(
       path: AppRoutes.transactions,
-      builder: (context, state) => TransactionsScreen(),
+      builder: (context, state) {
+        final textController = state.extra as String? ?? '';
+        return TransactionsScreen(textController: textController);
+      },
     ),
     GoRoute(
       path: AppRoutes.pay,

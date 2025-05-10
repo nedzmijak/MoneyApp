@@ -27,7 +27,7 @@ class PayScreen extends StatelessWidget {
             padding: const EdgeInsets.only(right: 11.0),
             child: IconButton(
               onPressed: () {
-                context.go(AppRoutes.transactions);
+                context.go(AppRoutes.transactions, extra: "");
               },
               icon: SvgPicture.asset('assets/icons/exit.svg'),
             ),
