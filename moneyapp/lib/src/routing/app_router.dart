@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:moneyapp/src/features/loan/screens/loan_screen.dart';
 import 'package:moneyapp/src/features/pay/bloc/amount_cubit.dart';
 import 'package:moneyapp/src/features/pay/screens/pay_screen.dart';
 import 'package:moneyapp/src/features/pay/screens/pay_who_screen.dart';
@@ -29,5 +30,6 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
         path: AppRoutes.transactionDetails,
         builder: (context, state) => TransactionDetailsScreen()),
+    GoRoute(path: AppRoutes.loan, builder: (context, state) => LoanScreen()),
   ],
 );

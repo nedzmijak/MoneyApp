@@ -90,10 +90,15 @@ class TransactionsScreen extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SvgPicture.asset(
-                                      'assets/icons/wallete_icon_svg.svg',
-                                      width: 40,
-                                      height: 40,
+                                    IconButton(
+                                      onPressed: () {
+                                        context.go(AppRoutes.loan);
+                                      },
+                                      icon: SvgPicture.asset(
+                                        'assets/icons/wallete_icon_svg.svg',
+                                        width: 40,
+                                        height: 40,
+                                      ),
                                     ),
                                     SizedBox(height: 8),
                                     Text("Loan",
