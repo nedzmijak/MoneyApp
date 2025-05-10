@@ -80,7 +80,7 @@ class PayWhoScreen extends StatelessWidget {
                       height: 60,
                       child: ElevatedButton(
                         onPressed: () {
-                          context.go(AppRoutes.payWho);
+                          context.go(AppRoutes.transactions);
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromRGBO(247, 247, 247, 0.5),
