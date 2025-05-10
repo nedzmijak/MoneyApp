@@ -3,4 +3,5 @@ abstract class AppRoutes {
   static const String transactions = '/transactions';
   static const String pay = '/pay';
   static const String payWho = '/pay_who';
+  static const String transactionDetails = '/transaction_details';
 }

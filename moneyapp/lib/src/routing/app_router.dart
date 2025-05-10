@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:moneyapp/src/features/pay/bloc/amount_cubit.dart';
 import 'package:moneyapp/src/features/pay/screens/pay_screen.dart';
 import 'package:moneyapp/src/features/pay/screens/pay_who_screen.dart';
+import 'package:moneyapp/src/features/transaction_details/screens/transaction_details_screen.dart';
 import 'package:moneyapp/src/features/transactions/screens/transactions_screen.dart';
 import 'app_routes.dart';
 
@@ -25,5 +26,8 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
         path: AppRoutes.payWho, builder: (context, state) => PayWhoScreen()),
+    GoRoute(
+        path: AppRoutes.transactionDetails,
+        builder: (context, state) => TransactionDetailsScreen()),
   ],
 );

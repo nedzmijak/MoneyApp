@@ -144,7 +144,13 @@ class TransactionsScreen extends StatelessWidget {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SvgPicture.asset('assets/icons/payment_icon.svg'),
+                              IconButton(
+                                onPressed: () {
+                                  context.go(AppRoutes.transactionDetails);
+                                },
+                                icon: SvgPicture.asset(
+                                    'assets/icons/payment_icon.svg'),
+                              ),
                               SizedBox(
                                 width: 8,
                               ),
