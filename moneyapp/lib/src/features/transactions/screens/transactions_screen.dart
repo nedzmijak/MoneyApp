@@ -32,97 +32,75 @@ class TransactionsScreen extends StatelessWidget {
             Column(
               children: [
                 Container(
-                    color: const Color.fromRGBO(192, 2, 139, 1.0),
-                    width: double.infinity,
-                    height: 200,
-                    alignment: const Alignment(0, 2.0),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
-                      child: Container(
+                  color: const Color.fromRGBO(192, 2, 139, 1.0),
+                  width: double.infinity,
+                  height: 200,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      Center(
+                          child: SizedBox(
+                        height: 100,
+                        child: Text(
+                          amount,
+                          style: GoogleFonts.montserrat(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      )),
+                      Positioned(
+                        bottom: -45,
+                        left: 20,
+                        right: 20,
+                        child: Container(
                           height: 110,
-                          width: double.infinity,
                           decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadiusDirectional.circular(10)),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 10,
+                                offset: Offset(0, 5),
+                              ),
+                            ],
+                          ),
                           child: Padding(
-                            padding: EdgeInsets.only(
-                                left: 50, right: 50, top: 12, bottom: 12),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 50, vertical: 12),
                             child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    IconButton(
-                                        onPressed: () {
-                                          context.go(AppRoutes.pay);
-                                        },
-                                        icon: SvgPicture.asset(
-                                          'assets/icons/phone_icon.svg',
-                                          width: 40,
-                                          height: 40,
-                                        )),
-                                    SizedBox(height: 8),
-                                    Text("Pay",
-                                        style: GoogleFonts.montserrat(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400))
-                                  ],
+                                _buildIconButton(
+                                  icon: 'assets/icons/phone_icon.svg',
+                                  label: 'Pay',
+                                  onPressed: () => context.go(AppRoutes.pay),
                                 ),
-                                SizedBox(width: 32),
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {
-                                        context.go(AppRoutes.topup);
-                                      },
-                                      icon: SvgPicture.asset(
-                                        'assets/icons/wallet_icon.svg',
-                                        width: 40,
-                                        height: 40,
-                                      ),
-                                    ),
-                                    SizedBox(height: 8),
-                                    Text("Top up",
-                                        style: GoogleFonts.montserrat(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400))
-                                  ],
+                                const SizedBox(width: 32),
+                                _buildIconButton(
+                                  icon: 'assets/icons/wallet_icon.svg',
+                                  label: 'Top up',
+                                  onPressed: () => context.go(AppRoutes.topup),
                                 ),
-                                SizedBox(width: 32),
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {
-                                        context.go(AppRoutes.loan);
-                                      },
-                                      icon: SvgPicture.asset(
-                                        'assets/icons/wallete_icon_svg.svg',
-                                        width: 40,
-                                        height: 40,
-                                      ),
-                                    ),
-                                    SizedBox(height: 8),
-                                    Text("Loan",
-                                        style: GoogleFonts.montserrat(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400))
-                                  ],
+                                const SizedBox(width: 32),
+                                _buildIconButton(
+                                  icon: 'assets/icons/wallete_icon_svg.svg',
+                                  label: 'Loan',
+                                  onPressed: () => context.go(AppRoutes.loan),
                                 ),
                               ],
                             ),
-                          )),
-                    )),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+// Pomocna metoda za kreiranje ikona
+
                 SizedBox(height: 70),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,9 +155,21 @@ class TransactionsScreen extends StatelessWidget {
                               SizedBox(
                                 width: 8,
                               ),
-                              Text(name),
+                              Text(
+                                name,
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14,
+                                ),
+                              ),
                               Spacer(),
-                              Text(amount)
+                              Text(
+                                amount,
+                                style: GoogleFonts.montserrat(
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: 22,
+                                ),
+                              )
                             ],
                           )),
                     ),
@@ -211,4 +201,29 @@ class TransactionsScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _buildIconButton({
+  required String icon,
+  required String label,
+  required VoidCallback onPressed,
+}) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      IconButton(
+        onPressed: onPressed,
+        icon: SvgPicture.asset(icon, width: 40, height: 40),
+      ),
+      const SizedBox(height: 8),
+      Text(
+        label,
+        style: GoogleFonts.montserrat(
+          color: Colors.black,
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+        ),
+      ),
+    ],
+  );
 }
