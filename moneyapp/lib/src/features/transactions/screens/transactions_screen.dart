@@ -5,8 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:moneyapp/src/routing/app_routes.dart';
 
 class TransactionsScreen extends StatelessWidget {
-  final String textController;
-  const TransactionsScreen({super.key, required this.textController});
+  final String amount;
+  final String name;
+  final String type;
+  const TransactionsScreen(
+      {super.key,
+      required this.name,
+      required this.amount,
+      required this.type});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,10 +78,15 @@ class TransactionsScreen extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SvgPicture.asset(
-                                      'assets/icons/wallet_icon.svg',
-                                      width: 40,
-                                      height: 40,
+                                    IconButton(
+                                      onPressed: () {
+                                        context.go(AppRoutes.topup);
+                                      },
+                                      icon: SvgPicture.asset(
+                                        'assets/icons/wallet_icon.svg',
+                                        width: 40,
+                                        height: 40,
+                                      ),
                                     ),
                                     SizedBox(height: 8),
                                     Text("Top up",
@@ -149,19 +160,20 @@ class TransactionsScreen extends StatelessWidget {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              IconButton(
-                                onPressed: () {
+                              GestureDetector(
+                                onTap: () {
                                   context.go(AppRoutes.transactionDetails);
                                 },
-                                icon: SvgPicture.asset(
-                                    'assets/icons/payment_icon.svg'),
+                                child: SvgPicture.asset(type == 'pay'
+                                    ? 'assets/icons/payment_icon.svg'
+                                    : 'assets/icons/topup_icon.svg'),
                               ),
                               SizedBox(
                                 width: 8,
                               ),
-                              Text(textController),
+                              Text(name),
                               Spacer(),
-                              Text("amount")
+                              Text(amount)
                             ],
                           )),
                     ),

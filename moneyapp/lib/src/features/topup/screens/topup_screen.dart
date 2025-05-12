@@ -7,9 +7,9 @@ import 'package:moneyapp/src/features/pay/bloc/amoun_state.dart';
 import 'package:moneyapp/src/features/pay/bloc/amount_cubit.dart';
 import 'package:moneyapp/src/routing/app_routes.dart';
 
-class PayScreen extends StatelessWidget {
+class TopupScreen extends StatelessWidget {
   final String type;
-  const PayScreen({required this.type});
+  const TopupScreen({required this.type});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +101,7 @@ class PayScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       final amount = context.read<AmountCubit>().state.amount;
-                      context.go('${AppRoutes.payWho}?type=pay',
+                      context.go('${AppRoutes.payWho}?type=topup',
                           extra: {'amount': amount, 'type': type});
                     },
                     style: ElevatedButton.styleFrom(
