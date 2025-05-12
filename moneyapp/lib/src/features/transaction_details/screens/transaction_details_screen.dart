@@ -6,6 +6,11 @@ import 'package:moneyapp/src/routing/app_routes.dart';
 import 'package:intl/intl.dart';
 
 class TransactionDetailsScreen extends StatelessWidget {
+  final String amount;
+  final String type;
+  final String name;
+  const TransactionDetailsScreen(
+      {required this.amount, required this.type, required this.name});
   @override
   Widget build(BuildContext context) {
     bool isRepeating = false;
@@ -13,7 +18,8 @@ class TransactionDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            context.go(AppRoutes.transactions, extra: "");
+            context.go(AppRoutes.transactions,
+                extra: {amount: "", name: "", type: ""});
           },
           icon: Icon(
             Icons.keyboard_arrow_left,
@@ -41,13 +47,15 @@ class TransactionDetailsScreen extends StatelessWidget {
               child: Row(
                 children: [
                   SvgPicture.asset(
-                    'assets/icons/payment_icon.svg',
-                    width: 64,
-                    height: 64,
+                    type == 'pay'
+                        ? 'assets/icons/payment_icon.svg'
+                        : 'assets/icons/topup_icon.svg',
+                    width: 60,
+                    height: 60,
                   ),
                   Spacer(),
                   Text(
-                    "32.00",
+                    amount,
                     style: GoogleFonts.montserrat(
                       fontWeight: FontWeight.w300,
                       fontSize: 37,
@@ -63,7 +71,7 @@ class TransactionDetailsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "eBay",
+                    name,
                     style: GoogleFonts.montserrat(
                         fontWeight: FontWeight.w600, fontSize: 23),
                   ),

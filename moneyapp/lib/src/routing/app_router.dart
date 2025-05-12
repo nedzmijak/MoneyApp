@@ -52,7 +52,17 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
         path: AppRoutes.transactionDetails,
-        builder: (context, state) => TransactionDetailsScreen()),
+        builder: (context, state) {
+          final data = state.extra as Map<String, String>? ?? {};
+          final amount = data['amount'] ?? '';
+          final type = state.uri.queryParameters['type'] ?? 'pay';
+          final name = data['name'] ?? '';
+          return TransactionDetailsScreen(
+            amount: amount,
+            type: type,
+            name: name,
+          );
+        }),
     GoRoute(path: AppRoutes.loan, builder: (context, state) => LoanScreen()),
     GoRoute(
       path: AppRoutes.topup,

@@ -162,7 +162,13 @@ class TransactionsScreen extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  context.go(AppRoutes.transactionDetails);
+                                  context.go(
+                                      '${AppRoutes.transactionDetails}?type=$type',
+                                      extra: {
+                                        'amount': amount,
+                                        'type': type,
+                                        'name': name
+                                      });
                                 },
                                 child: SvgPicture.asset(type == 'pay'
                                     ? 'assets/icons/payment_icon.svg'
