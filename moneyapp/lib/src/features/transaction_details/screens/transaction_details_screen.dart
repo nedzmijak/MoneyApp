@@ -200,16 +200,37 @@ class TransactionDetailsScreen extends StatelessWidget {
               height: 50,
               width: double.infinity,
               child: Padding(
-                padding:
-                    EdgeInsets.only(left: 24, top: 14, bottom: 14, right: 25),
-                child: Text(
-                  "Something wrong? Get help",
-                  style: GoogleFonts.montserrat(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                      color: Colors.red),
-                ),
-              ),
+                  padding:
+                      EdgeInsets.only(left: 24, top: 14, bottom: 14, right: 25),
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const AlertDialog(
+                              title: Text(
+                                "Help is on the way. Stay put!",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w400),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.horizontal(
+                                    left: Radius.circular(8),
+                                    right: Radius.circular(8)),
+                              ));
+                        },
+                      );
+                    },
+                    child: Text(
+                      "Something wrong? Get help",
+                      style: GoogleFonts.montserrat(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14,
+                        color: Colors.red,
+                      ),
+                    ),
+                  )),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),

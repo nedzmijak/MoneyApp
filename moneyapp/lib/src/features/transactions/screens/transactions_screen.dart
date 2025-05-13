@@ -98,9 +98,6 @@ class TransactionsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-
-// Pomocna metoda za kreiranje ikona
-
                 SizedBox(height: 70),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,45 +130,50 @@ class TransactionsScreen extends StatelessWidget {
                       color: Colors.white,
                       height: 150,
                       child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 14),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  context.go(
-                                      '${AppRoutes.transactionDetails}?type=$type',
-                                      extra: {
-                                        'amount': amount,
-                                        'type': type,
-                                        'name': name
-                                      });
-                                },
-                                child: SvgPicture.asset(type == 'pay'
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                context.go(
+                                  '${AppRoutes.transactionDetails}?type=$type',
+                                  extra: {
+                                    'amount': amount,
+                                    'type': type,
+                                    'name': name,
+                                  },
+                                );
+                              },
+                              child: SvgPicture.asset(
+                                type == 'pay'
                                     ? 'assets/icons/payment_icon.svg'
-                                    : 'assets/icons/topup_icon.svg'),
+                                    : 'assets/icons/topup_icon.svg',
                               ),
-                              SizedBox(
-                                width: 8,
+                            ),
+                            SizedBox(width: 8),
+                            Text(
+                              name,
+                              style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
                               ),
-                              Text(
-                                name,
-                                style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14,
-                                ),
+                            ),
+                            Spacer(),
+                            Text(
+                              type == 'topup' ? '+$amount' : amount,
+                              style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 22,
+                                color: type == 'topup'
+                                    ? const Color.fromRGBO(192, 2, 139, 1.0)
+                                    : Colors.black,
                               ),
-                              Spacer(),
-                              Text(
-                                amount,
-                                style: GoogleFonts.montserrat(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 22,
-                                ),
-                              )
-                            ],
-                          )),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: 8,
