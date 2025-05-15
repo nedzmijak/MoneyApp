@@ -11,7 +11,7 @@ class LoanScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            context.go(AppRoutes.transactions, extra: "");
+            context.push(AppRoutes.transactions);
           },
           icon: Icon(
             Icons.keyboard_arrow_left,
@@ -205,7 +205,27 @@ class LoanScreen extends StatelessWidget {
                 height: 60,
                 width: 200,
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const AlertDialog(
+                              title: Text(
+                                "Yeeeyy!! Congrats. Your application has been approved. Don't tell your friends you have money!",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.green),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.horizontal(
+                                    left: Radius.circular(8),
+                                    right: Radius.circular(8)),
+                              ));
+                        },
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
